@@ -26,7 +26,7 @@ public class AmmoText : MonoBehaviour
     {
         if (ammoAmount > 0 )
         {
-            text.text = "Ammo: " + ammoAmount; 
+            text.text = "Ammo: " + ammoAmount + " / 20"; 
               
         }
         else

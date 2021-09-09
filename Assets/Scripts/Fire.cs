@@ -35,6 +35,7 @@ public class Fire : MonoBehaviour
     [SerializeField] private ParticleSystem pistolMuzzleFlash;
     [SerializeField] private ParticleSystem m3MuzzleFlash;
 
+
     //-----------------------------------------------------------------------------------------------
 
     void Awake()
@@ -90,6 +91,7 @@ public class Fire : MonoBehaviour
             nextFire = Time.time + fireRatePistol;
 
             pistolMuzzleFlash.Play();
+            
 
 
             var spawnBullet = Instantiate(bullet, barrel.position, barrel.rotation);

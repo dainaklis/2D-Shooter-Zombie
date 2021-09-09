@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7506040999718681362}
   m_Layer: 0
   m_Name: BulletLight
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 357337327
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 3a478c2e045b3b64c8f9224ad8439e4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -160,4 +160,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodEffects: {fileID: 7540940051514468704, guid: 3820adf25755b6f46aa05768e9dfa291, type: 3}
-  NewExplotionEffects: {fileID: 8057962869148410738, guid: c8bec4cf0cb636f4586792ac7e7e6aea, type: 3}
+  hitEffects: {fileID: 0}
+  damage: 0

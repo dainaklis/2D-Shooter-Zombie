@@ -6,9 +6,20 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuControler : MonoBehaviour
 {
+
+    [Header ("Pause Menu")]
+    [SerializeField] private GameObject pauseMenu;
+
+
+    // ----------------------------------------------------------------------------------
     public void Playgame()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void PlaygameDefense()
+    {
+        SceneManager.LoadScene("LevelDefense");
     }
 
     public void ExitGame()
@@ -25,5 +36,23 @@ public class MainMenuControler : MonoBehaviour
     public void Menu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void ResetStats()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void PauseMenu()
+    {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+
+    }
+
+    public void UnPause()
+    {
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 }

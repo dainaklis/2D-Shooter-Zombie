@@ -6,7 +6,7 @@ public class SoundControl : MonoBehaviour
 {
     public static SoundControl sound;
     private AudioSource audioSrc;
-    [SerializeField] private AudioClip soundPistol, soundShotgun, soundAK, soundJump, soundWalk, soundGameOver, outAmmo, soundEnemyHit, soundNextGuns, soundPlayerHit, soundReload;
+    [SerializeField] private AudioClip soundPistol, soundShotgun, soundAK, soundJump, soundWalk, soundGameOver, outAmmo, soundEnemyHit, soundNextGuns, soundPlayerHit, soundReload, soundFireWorks, soundStep;
 
 
     private void Awake() 
@@ -87,6 +87,16 @@ public class SoundControl : MonoBehaviour
     public void PlaySoundEnemyHit()
     {
         audioSrc.PlayOneShot(soundEnemyHit);
+    }
+
+    public void PlaySoundFireWorks()
+    {
+        audioSrc.PlayOneShot(soundFireWorks);
+    }
+
+    public void PlaySoundStepSounds()
+    {
+        audioSrc.PlayOneShot(soundStep);
     }
 
 }

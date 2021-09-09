@@ -29,6 +29,7 @@ public class DoorScripts : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            SoundControl.sound.PlaySoundStepSounds();
             
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);         
 
@@ -37,6 +38,7 @@ public class DoorScripts : MonoBehaviour
             Destroy(gameObject);
 
             gameObject.SetActive(false);
+
         }
         
         

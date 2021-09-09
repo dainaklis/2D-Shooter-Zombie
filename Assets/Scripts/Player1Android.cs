@@ -7,7 +7,7 @@ public class Player1Android : MonoBehaviour
 {
 
     // ------------------------- ANDROID ---------------------------
-
+    static public Player1Android player1Android;
     // ----------------- JUDEJIMAS ZOTOV -------------------
     private float horizontalMove;
     [SerializeField] private float speedMove;
@@ -19,6 +19,7 @@ public class Player1Android : MonoBehaviour
     private Vector3 localScale;
 
     [SerializeField] private Transform explotion;
+    [SerializeField] private GameObject hitEnemy;
     
 
     //--------------------------------------Jump and (GroundCheck(is Antarsoft))------------------------------------
@@ -33,6 +34,13 @@ public class Player1Android : MonoBehaviour
     [SerializeField] private GameObject gameOver;
     [SerializeField] private Text gameOverText;
 
+    //---------------------------------------------------------------------------------------------------------------
+    [Header ("HEALTH BAR")]
+
+    public int maxHealth = 20;
+    public int currentHealth;
+
+    public  HealttBar instHealtBar;
 
 
 
@@ -45,6 +53,8 @@ public class Player1Android : MonoBehaviour
 
         localScale = transform.localScale;
         Time.timeScale = 1;
+
+        player1Android = this;
 
     
 
@@ -61,12 +71,17 @@ public class Player1Android : MonoBehaviour
 
         gameOver.SetActive(false);
 
+        currentHealth = maxHealth;
+
+        instHealtBar.SetMaxHealth(maxHealth);
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
     // ------------------ANDROID-----------------------------
 
         if (canUp)
@@ -169,8 +184,12 @@ public class Player1Android : MonoBehaviour
         if (collision.gameObject.tag =="Enemy")
         {
 
+            TakeDamage(2);
 
-            StartCoroutine(ExplotionPlayer());
+            if (currentHealth == 0)
+            {
+                StartCoroutine(ExplotionPlayer());
+            }
 
         }
 
@@ -183,13 +202,14 @@ public class Player1Android : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Destroy(gameObject);
+            TakeDamage(2);
 
-            // SoundControl.sound.PlaySoundgameOver();
+            if (currentHealth == 0)
+            {
+                StartCoroutine(ExplotionPlayer());
+            }
 
-            // Instantiate(explotion, transform.position, Quaternion.identity);
-
-            StartCoroutine(ExplotionPlayer());
+            
             
 
         }
@@ -199,6 +219,8 @@ public class Player1Android : MonoBehaviour
 
     IEnumerator ExplotionPlayer()
     {
+        //CameraShake.cameraShake.CameraShaking();
+
         Destroy(gameObject);
 
         SoundControl.sound.PlaySoundgameOver();
@@ -215,4 +237,21 @@ public class Player1Android : MonoBehaviour
     }
 
     //----------------------------------------------------------------
+
+    private void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        SoundControl.sound.PlaySoundPlayerhit();
+
+        Instantiate(hitEnemy, transform.position, Quaternion.identity);
+
+        instHealtBar.SetHealth(currentHealth);
+    }
+
+    public void CaroutineEplotionPlayer()
+    {
+        StartCoroutine(ExplotionPlayer());
+        
+    }
 }

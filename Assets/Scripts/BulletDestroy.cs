@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class BulletDestroy : MonoBehaviour
 {
+
+    static public BulletDestroy bulletDestroy;
     [SerializeField] private GameObject bloodEffects;
+
+    [SerializeField] private GameObject hitEffects;
+
     //[SerializeField] private GameObject NewExplotionEffects;
+
+    public int damage;
+
+
+    void Awake()
+    {
+        bulletDestroy = this;
+    }
+
     void Start()
     {
         Destroy(gameObject, 2f);
@@ -21,7 +35,11 @@ public class BulletDestroy : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<EnemyMove>() != null)
         {
+            //TakeDamage(1);
+
             SoundControl.sound.PlaySoundEnemyHit();
+
+            //Instantiate(hitEffects, transform.position, Quaternion.identity);
 
             Instantiate(bloodEffects, transform.position, Quaternion.identity);
             //Instantiate(NewExplotionEffects, transform.position, Quaternion.identity);
@@ -56,6 +74,14 @@ public class BulletDestroy : MonoBehaviour
             
         // }
 
+
+    }
+
+    private void TakeDamage(int damage)
+    {
+        EnemyHealthAndDamage.enemyHealthAndDamage.currentEnemyHealth -= damage;
+
+        print(EnemyHealthAndDamage.enemyHealthAndDamage.currentEnemyHealth);
 
     }
 
