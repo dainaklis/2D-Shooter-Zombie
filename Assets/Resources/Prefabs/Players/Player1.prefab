@@ -841,6 +841,7 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 0
   instHealtBar: {fileID: 1160443242}
+  popUpTextDamage: {fileID: 224104659796760219, guid: f906c0bbdfffe704f8e8d75b78984cfa, type: 3}
 --- !u!114 &5387264616328329816
 MonoBehaviour:
   m_ObjectHideFlags: 0

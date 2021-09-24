@@ -8,8 +8,7 @@ public class AmmoText : MonoBehaviour
     public static AmmoText ammoText;
     private Text text;
     public int ammoAmount = 20;
-
-
+    
     void Awake()
     {
         ammoText = this;

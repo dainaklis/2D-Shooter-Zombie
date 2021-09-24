@@ -42,7 +42,9 @@ public class Player1Android : MonoBehaviour
 
     public  HealttBar instHealtBar;
 
-
+    [Header ("PopUpText")]
+    [SerializeField] private GameObject popUpTextDamage;
+    
 
     //---------------------------------------------------------------------------------------------------------------
     
@@ -55,8 +57,7 @@ public class Player1Android : MonoBehaviour
         Time.timeScale = 1;
 
         player1Android = this;
-
-    
+   
 
     }
 
@@ -242,6 +243,8 @@ public class Player1Android : MonoBehaviour
     {
         currentHealth -= damage;
 
+        PopUpText(damage);
+
         SoundControl.sound.PlaySoundPlayerhit();
 
         Instantiate(hitEnemy, transform.position, Quaternion.identity);
@@ -253,5 +256,18 @@ public class Player1Android : MonoBehaviour
     {
         StartCoroutine(ExplotionPlayer());
         
+    }
+
+    private void PopUpText(int damage)
+    {
+        float posX = Random.Range (-0.57f, 0.6f);
+        float posY = Random.Range (-4.0f, -3.6f);
+
+        GameObject textDamage =  Instantiate(popUpTextDamage, player1Android.transform.position, Quaternion.identity) as GameObject;
+
+        //---text paraso DAMAGE ir RANDOM COLOR ------------------------
+        textDamage.GetComponentInChildren<TextMesh>().text = " - " + damage.ToString();
+        textDamage.GetComponentInChildren<TextMesh>().color = new Color(Random.Range(0, 2), Random.Range(0, 2), Random.Range(0, 2), 1f);
+
     }
 }
